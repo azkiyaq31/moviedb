@@ -1,0 +1,155 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+    id 'kotlin-parcelize'
+    id 'dagger.hilt.android.plugin'
+    id 'androidx.navigation.safeargs.kotlin'
+}
+
+android {
+    compileSdk 31
+
+
+    buildFeatures {
+        viewBinding true
+        dataBinding true
+    }
+
+    defaultConfig {
+        applicationId "com.example.moviedbtest"
+        minSdk 21
+        targetSdk 31
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments["dagger.hilt.disableModulesHaveInstallInCheck"] = "true"
+            }
+        }
+
+        vectorDrawables.useSupportLibrary = true
+        signingConfig signingConfigs.debug
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            shrinkResources true
+            debuggable false
+            jniDebuggable false
+            renderscriptDebuggable false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            android.applicationVariants.all { variant ->
+                renameAPK(variant)
+            }
+        }
+
+        debug {
+            android.applicationVariants.all { variant ->
+                renameAPK(variant)
+            }
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    flavorDimensions 'version'
+
+    productFlavors {
+        development {
+            buildConfigField "String", "ENV", "\"DEVELOPMENT\""
+            buildConfigField "String", "BASE_URL", "\"https://api.themoviedb.org/3/\""
+            buildConfigField "String", "MOVIE_API_KEY", "\"74f856806e5800f9e6bbfabfbf0e8120\""
+            buildConfigField "String", "IMAGE_MOVIE_BASE_URL", "\"https://image.tmdb.org/t/p/w500\""
+        }
+        production {
+            buildConfigField "String", "ENV", "\"PRODUCTION\""
+            buildConfigField "String", "BASE_URL", "\"https://api.themoviedb.org/3/\""
+            buildConfigField "String", "MOVIE_API_KEY", "\"74f856806e5800f9e6bbfabfbf0e8120\""
+            buildConfigField "String", "IMAGE_MOVIE_BASE_URL", "\"https://image.tmdb.org/t/p/w500\""
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
+def renameAPK(variant) {
+    def appName
+    def formattedDate = new Date().format('yyyyMMdd-HHmmss')
+    if (project.hasProperty("applicationName")) {
+        appName = applicationName
+    } else {
+        appName = parent.name
+    }
+    variant.outputs.all { output ->
+        outputFileName = "${appName}_${output.baseName}_${variant.versionName}_${formattedDate}.apk"
+    }
+}
+
+dependencies {
+    implementation 'androidx.core:core-ktx:1.7.0'
+    implementation 'androidx.appcompat:appcompat:1.4.1'
+    implementation 'com.google.android.material:material:1.5.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.3'
+    implementation "androidx.work:work-runtime-ktx:2.7.1"
+    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.3.1'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1'
+    implementation 'androidx.lifecycle:lifecycle-common-java8:2.3.1'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    implementation 'androidx.fragment:fragment-ktx:1.3.6'
+
+    //glide and shimmer
+    implementation 'com.github.bumptech.glide:glide:4.11.0'
+    implementation 'com.facebook.shimmer:shimmer:0.5.0'
+    kapt 'com.github.bumptech.glide:compiler:4.12.0'
+
+    //navigation
+    implementation "androidx.navigation:navigation-runtime-ktx:$nav_version"
+    implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
+    implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
+
+    //timber
+    implementation 'com.jakewharton.timber:timber:4.7.1'
+
+    //gson
+    implementation 'com.google.code.gson:gson:2.8.7'
+
+    // hilt
+    implementation "com.google.dagger:hilt-android:$hilt_core_version"
+    kapt "com.google.dagger:hilt-compiler:$hilt_core_version"
+    kapt "androidx.hilt:hilt-compiler:$hilt_version"
+    androidTestImplementation "com.google.dagger:hilt-android-testing:$hilt_core_version"
+    kaptAndroidTest "com.google.dagger:hilt-compiler:$hilt_core_version"
+    implementation "androidx.hilt:hilt-work:$hilt_version"
+    kapt "androidx.hilt:hilt-compiler:$hilt_version"
+
+    // network
+    implementation "com.github.skydoves:sandwich:$sandwich_version"
+    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
+//    implementation "com.squareup.retrofit2:converter-moshi:$retrofit_version"
+    implementation "com.squareup.okhttp3:logging-interceptor:$okhttp_version"
+
+    // moshi
+    implementation "com.squareup.moshi:moshi-kotlin:$moshi_version"
+    kapt "com.squareup.moshi:moshi-kotlin-codegen:$moshi_version"
+
+    //room
+    implementation "androidx.room:room-runtime:$room_version"
+    implementation "androidx.room:room-ktx:$room_version"
+    kapt "androidx.room:room-compiler:$room_version"
+
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+}

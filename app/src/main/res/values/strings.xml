@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Movie Db Test</string>
+    <string name="title_popular_movie">Popular Movie</string>
+    <string name="title_top_rated">Top Rated</string>
+    <string name="title_now_playing">Now Playing</string>
+    <string name="rating_is">Rating: #</string>
+</resources>

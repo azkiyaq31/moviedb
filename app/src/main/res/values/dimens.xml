@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="dip_16">16dp</dimen>
+    <dimen name="dip_8">8dp</dimen>
+    <dimen name="dip_128">128dp</dimen>
+    <dimen name="dip_96">96dp</dimen>
+    <dimen name="dip_32">32dp</dimen>
+    <dimen name="dip_64">64dp</dimen>
+    <dimen name="dip_4">4dp</dimen>
+    <dimen name="sp_12">12sp</dimen>
+    <dimen name="sp_14">14sp</dimen>
+    <dimen name="sp_4">4sp</dimen>
+</resources>
