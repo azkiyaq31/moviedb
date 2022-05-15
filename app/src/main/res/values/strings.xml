@@ -4,4 +4,8 @@
     <string name="title_top_rated">Top Rated</string>
     <string name="title_now_playing">Now Playing</string>
     <string name="rating_is">Rating: #</string>
+    <string name="movie">Movie</string>
+    <string name="description">Description</string>
+    <string name="review">Review</string>
+    <string name="detail">Detail</string>
 </resources>

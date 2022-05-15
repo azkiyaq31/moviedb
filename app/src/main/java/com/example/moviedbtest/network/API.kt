@@ -12,4 +12,7 @@ object API {
     const val POPULAR_MOVIE = "movie/popular"
     const val TOP_RATED_MOVIE = "movie/top_rated"
     const val NOW_PLAYING_MOVIE = "movie/now_playing"
+    const val MOVIE_DETAIL = "movie/{movieId}"
+    const val MOVIE_REVIEWS = "movie/{movieId}/reviews"
+
 }

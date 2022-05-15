@@ -9,13 +9,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import com.example.moviedbtest.R
+import com.example.moviedbtest.data.model.remote.response.MovieResponse
 import com.example.moviedbtest.databinding.HomeFragmentBinding
-import com.example.moviedbtest.util.DummyListAdapter
-import com.example.moviedbtest.util.getDeviceWidth
-import com.example.moviedbtest.util.px
+import com.example.moviedbtest.listener.ItemMovieListener
+import com.example.moviedbtest.util.*
+import com.example.moviedbtest.util.Constants.ARG_MOVIE_ID
 import com.example.moviedbtest.viewmodels.HomeViewModel
 
-class HomeFragment : Fragment() {
+class HomeFragment : Fragment(), ItemMovieListener {
 
     companion object {
         fun newInstance() = HomeFragment()
@@ -91,6 +92,22 @@ class HomeFragment : Fragment() {
         return binding.root
     }
 
+    override fun onItemClick(obj: MovieResponse) {
+        val bundle = Bundle().apply {
+            putInt(ARG_MOVIE_ID, obj.id ?: 0)
+        }
+        NavigationUtil.navigateFragment(
+            binding.root,
+            R.id.action_home_fragment_to_movie_detail_fragment,
+            WidgetUtil.getNavOptions(
+                R.anim.enter_from_right,
+                R.anim.exit_to_right,
+                R.anim.enter_from_left,
+                R.anim.exit_to_right
+            ), bundle
+        )
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.apply {
@@ -99,16 +116,19 @@ class HomeFragment : Fragment() {
                 ((requireActivity().getDeviceWidth() - (16.px)) * 3 / 4) * 9 / 16,
                 false,
                 arrayListOf(),
+                this@HomeFragment
             )
             topratedMovieAdapter = HomeMovieListAdapter(
                 96.px,
                 96.px, true,
                 arrayListOf(),
+                this@HomeFragment
             )
             nowPlayingMovieAdapter = HomeMovieListAdapter(
                 96.px,
                 96.px, true,
                 arrayListOf(),
+                this@HomeFragment
             )
             rvNowPlaying.adapter = nowPlayingMovieAdapter
             rvPopular.adapter = popularMovieAdapter

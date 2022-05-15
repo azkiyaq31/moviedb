@@ -21,5 +21,5 @@ data class MovieResponse(
     @SerializedName("title")
     val title: String? = null,
     @SerializedName("vote_average")
-    val voteAvg: Double? = null
+    val voteAvg: Double? = null,
 )

@@ -4,11 +4,15 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="app/src/main/res/drawable/ic_dummy_image.xml" value="0.192" />
+        <entry key="app/src/main/res/drawable/ic_favorite_border.xml" value="0.1595" />
+        <entry key="app/src/main/res/drawable/ic_share.xml" value="0.1595" />
         <entry key="app/src/main/res/font/avenir.xml" value="0.2861111111111111" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.165" />
         <entry key="app/src/main/res/layout/home_fragment.xml" value="0.25" />
         <entry key="app/src/main/res/layout/item_dummy_list.xml" value="0.25729166666666664" />
         <entry key="app/src/main/res/layout/item_home_movie_list.xml" value="0.25729166666666664" />
+        <entry key="app/src/main/res/layout/item_movie_review.xml" value="0.25729166666666664" />
+        <entry key="app/src/main/res/layout/movie_detail_fragment.xml" value="0.25729166666666664" />
       </map>
     </option>
   </component>

@@ -42,8 +42,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:clipToPadding="false"
-                    android:paddingHorizontal="@dimen/dip_8"
                     android:orientation="horizontal"
+                    android:paddingHorizontal="@dimen/dip_8"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
             </com.facebook.shimmer.ShimmerFrameLayout>
@@ -75,8 +75,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:clipToPadding="false"
-                    android:paddingHorizontal="@dimen/dip_8"
                     android:orientation="horizontal"
+                    android:paddingHorizontal="@dimen/dip_8"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
             </com.facebook.shimmer.ShimmerFrameLayout>
@@ -108,8 +108,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:clipToPadding="false"
-                    android:paddingHorizontal="@dimen/dip_8"
                     android:orientation="horizontal"
+                    android:paddingHorizontal="@dimen/dip_8"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
             </com.facebook.shimmer.ShimmerFrameLayout>

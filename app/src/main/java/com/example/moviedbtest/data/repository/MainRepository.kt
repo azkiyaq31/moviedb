@@ -4,6 +4,7 @@ import androidx.annotation.WorkerThread
 import com.example.moviedbtest.data.ErrorResponseMapper
 import com.example.moviedbtest.data.RemoteDataSource
 import com.example.moviedbtest.data.model.remote.response.MovieResponse
+import com.example.moviedbtest.data.model.remote.response.MovieReviewResponse
 import com.example.moviedbtest.data.uiresponse.BaseUiResponse
 import com.skydoves.sandwich.suspendOnError
 import com.skydoves.sandwich.suspendOnException
@@ -97,6 +98,55 @@ class MainRepository @Inject constructor(
         }
     }.onStart {
         val loading = BaseUiResponse.loading<List<MovieResponse>>(null)
+        emit(loading)
+    }.flowOn(ioDispatcher)
+
+    @WorkerThread
+    fun getMovieReview(movieId: Int) = flow {
+        var result: BaseUiResponse<List<MovieReviewResponse>>
+        val response = remoteDataSource.getMovieReview(movieId)
+        response.suspendOnSuccess {
+            val responseData = data.results
+            result = if (responseData != null) {
+                BaseUiResponse.success(responseData, statusCode.code)
+            } else {
+                BaseUiResponse.error("Data is empty", responseData, statusCode.code)
+            }
+
+            emit(result)
+        }.suspendOnError {
+            val response = ErrorResponseMapper<List<MovieReviewResponse>>().map(this)
+            result = BaseUiResponse.error("Error", response.results, 0)
+            emit(result)
+        }.suspendOnException {
+            val response = ErrorResponseMapper<List<MovieReviewResponse>>().map(this)
+            result = BaseUiResponse.error("Error", response.results, 0)
+            emit(result)
+        }
+    }.onStart {
+        val loading = BaseUiResponse.loading<List<MovieReviewResponse>>(null)
+        emit(loading)
+    }.flowOn(ioDispatcher)
+
+    @WorkerThread
+    fun getMovieDetail(movieId: Int) = flow {
+        var result: BaseUiResponse<MovieResponse>
+        val response = remoteDataSource.getMovieDetail(movieId)
+        response.suspendOnSuccess {
+            val responseData = data
+            result = BaseUiResponse.success(responseData, statusCode.code)
+            emit(result)
+        }.suspendOnError {
+            val response = ErrorResponseMapper<MovieResponse>().map(this)
+            result = BaseUiResponse.error("Error", response.results, 0)
+            emit(result)
+        }.suspendOnException {
+            val response = ErrorResponseMapper<MovieResponse>().map(this)
+            result = BaseUiResponse.error("Error", response.results, 0)
+            emit(result)
+        }
+    }.onStart {
+        val loading = BaseUiResponse.loading<MovieResponse>(null)
         emit(loading)
     }.flowOn(ioDispatcher)
 }

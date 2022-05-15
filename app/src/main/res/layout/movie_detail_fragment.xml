@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.detail.MovieDetailFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@android:color/white">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <FrameLayout
+                    android:id="@+id/card_banner"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/dip_8">
+
+                    <ImageView
+                        android:id="@+id/imgv_banner"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="center" />
+
+                    <ProgressBar
+                        android:id="@+id/pb_image"
+                        android:layout_width="@dimen/dip_16"
+                        android:layout_height="@dimen/dip_16"
+                        android:layout_gravity="center"
+                        android:indeterminateTint="@color/purple_200" />
+                </FrameLayout>
+
+                <TextView
+                    android:id="@+id/tv_title"
+                    style="@style/TextAppearance.MovieTypographyStyles.Subtitle1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/dip_16"
+                    android:layout_marginVertical="@dimen/dip_4"
+                    android:ellipsize="end"
+                    android:lineSpacingExtra="@dimen/sp_4"
+                    android:maxLines="2"
+                    android:textColor="@color/grey_900"
+                    tools:text="Judul Berita" />
+
+                <TextView
+                    android:id="@+id/tv_genre"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/dip_16"
+                    android:fontFamily="@font/avenir_book"
+                    android:textColor="@color/grey_900"
+                    android:textSize="@dimen/sp_14"
+                    tools:text="Komedi-romantis" />
+
+                <TextView
+                    style="@style/TextAppearance.MovieTypographyStyles.Subtitle2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/dip_16"
+                    android:layout_marginTop="@dimen/dip_16"
+                    android:layout_marginBottom="@dimen/dip_4"
+                    android:ellipsize="end"
+                    android:lineSpacingExtra="@dimen/sp_4"
+                    android:maxLines="2"
+                    android:text="@string/description" />
+
+                <TextView
+                    android:id="@+id/tv_descr"
+                    style="@style/TextAppearance.MovieTypographyStyles.Body1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/dip_16"
+                    android:lineSpacingExtra="@dimen/sp_4"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/sp_12"
+                    tools:text="Komedi-romantis" />
+
+                <TextView
+                    style="@style/TextAppearance.MovieTypographyStyles.Subtitle2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/dip_16"
+                    android:layout_marginTop="@dimen/dip_16"
+                    android:ellipsize="end"
+                    android:lineSpacingExtra="@dimen/sp_4"
+                    android:maxLines="2"
+                    android:text="@string/review" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_reviews"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clipToPadding="false"
+                    android:nestedScrollingEnabled="false"
+                    android:orientation="vertical"
+                    android:paddingBottom="@dimen/dip_8"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+            </LinearLayout>
+
+
+        </androidx.core.widget.NestedScrollView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:elevation="@dimen/dip_8"
+            android:orientation="horizontal"
+            android:paddingVertical="@dimen/dip_8">
+
+            <androidx.legacy.widget.Space
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/dip_8"
+                android:src="@drawable/ic_favorite_border" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/dip_8"
+                android:src="@drawable/ic_share" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+</layout>

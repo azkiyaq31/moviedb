@@ -24,12 +24,13 @@
         <item name="android:textColor">@android:color/black</item>
     </style>
 
-    <style name="TextAppearance.MdcTypographyStyles.Body1" parent="TextAppearance.MaterialComponents.Body1">
+    <style name="TextAppearance.MovieTypographyStyles.Body1" parent="TextAppearance.MaterialComponents.Body1">
         <item name="fontFamily">@font/avenir</item>
         <item name="android:fontFamily">@font/avenir</item>
+
     </style>
 
-    <style name="TextAppearance.MdcTypographyStyles.Button" parent="TextAppearance.MaterialComponents.Button">
+    <style name="TextAppearance.MovieTypographyStyles.Button" parent="TextAppearance.MaterialComponents.Button">
         <item name="fontFamily">@font/avenir</item>
         <item name="android:fontFamily">@font/avenir</item>
     </style>

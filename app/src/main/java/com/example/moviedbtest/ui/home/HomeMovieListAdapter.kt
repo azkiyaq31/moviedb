@@ -9,13 +9,15 @@ import com.example.moviedbtest.R
 import com.example.moviedbtest.data.model.remote.response.MovieResponse
 import com.example.moviedbtest.databinding.ItemDummyListBinding
 import com.example.moviedbtest.databinding.ItemHomeMovieListBinding
+import com.example.moviedbtest.listener.ItemMovieListener
 import com.example.moviedbtest.util.loadImage
 
 class HomeMovieListAdapter(
     val itemDummyWidth: Int,
     val itemDummyHeight: Int,
     val usingCaption: Boolean = false,
-    val mData: ArrayList<MovieResponse>
+    val mData: ArrayList<MovieResponse>,
+    val listener: ItemMovieListener
 ) :
     RecyclerView.Adapter<HomeMovieListAdapter.ItemHomeMovieVH>() {
 
@@ -31,6 +33,7 @@ class HomeMovieListAdapter(
         RecyclerView.ViewHolder(viewBind.root) {
         fun bind(obj: MovieResponse) {
             viewBind.apply {
+                root.setOnClickListener { listener.onItemClick(obj) }
                 imgvBanner.loadImage(
                     BuildConfig.IMAGE_MOVIE_BASE_URL + (obj.backdropPath ?: ""),
                     pbImage

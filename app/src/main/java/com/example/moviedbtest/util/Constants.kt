@@ -4,4 +4,5 @@ object Constants {
     const val API_TIMEOUT: Long = 1
     const val BEARER_TOKEN = "bearerToken"
     const val API_KEY = "api_key"
+    const val ARG_MOVIE_ID = "movieId"
 }
