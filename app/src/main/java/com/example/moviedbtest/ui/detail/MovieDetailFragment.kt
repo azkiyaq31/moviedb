@@ -2,10 +2,8 @@ package com.example.moviedbtest.ui.detail
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import com.example.moviedbtest.BuildConfig
 import com.example.moviedbtest.R
@@ -31,6 +29,9 @@ class MovieDetailFragment : Fragment() {
     ): View {
         viewModel.apply {
             movieId = arguments?.getInt(ARG_MOVIE_ID, 0) ?: 0
+            favoriteState.observe(viewLifecycleOwner) {
+                binding.imgvFav.setImageResource(if (it) R.drawable.ic_favorite_filled_red else R.drawable.ic_favorite_border)
+            }
             contentResult.observe(viewLifecycleOwner) {
                 if (it != null) {
                     binding.apply {
@@ -55,14 +56,26 @@ class MovieDetailFragment : Fragment() {
         return binding.root
     }
 
+    override fun onPrepareOptionsMenu(menu: Menu) {
+        val item = menu.findItem(R.id.menu_fav)
+        item.isVisible = false
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setHasOptionsMenu(true)
         binding.apply {
             cardBanner.layoutParams = cardBanner.layoutParams.apply {
                 height = requireActivity().getDeviceWidth() * 9 / 16
             }
             reviewAdapter = MovieReviewListAdapter(arrayListOf())
             rvReviews.adapter = reviewAdapter
+            imgvFav.setOnClickListener {
+                if (viewModel.favoriteState.value != true)
+                    viewModel.addToFavorite()
+                else
+                    viewModel.removeFromFavorite()
+            }
         }
     }
 

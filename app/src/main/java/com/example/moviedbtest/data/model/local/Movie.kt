@@ -13,5 +13,13 @@ data class Movie(
     @PrimaryKey
     @NonNull
     @ColumnInfo(name = "id")
-    var id: Int = 0
+    var id: Int = 0,
+    @ColumnInfo(name = "title")
+    var title: String = "",
+    @ColumnInfo(name = "backdrop_path")
+    var backdropPath: String = "",
+    @ColumnInfo(name = "genre")
+    var genre: String = "",
+    @ColumnInfo(name = "overview")
+    var overview: String = ""
 ) : Parcelable

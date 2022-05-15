@@ -16,7 +16,7 @@ import com.example.moviedbtest.util.*
 import com.example.moviedbtest.util.Constants.ARG_MOVIE_ID
 import com.example.moviedbtest.viewmodels.HomeViewModel
 
-class HomeFragment : Fragment(), ItemMovieListener {
+class HomeFragment : Fragment(), ItemMovieListener<MovieResponse> {
 
     companion object {
         fun newInstance() = HomeFragment()

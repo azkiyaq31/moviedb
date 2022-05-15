@@ -9,10 +9,13 @@
         android:id="@+id/home_fragment"
         android:name="com.example.moviedbtest.ui.home.HomeFragment"
         android:label="@string/movie"
-        tools:layout="@layout/home_fragment" >
+        tools:layout="@layout/home_fragment">
         <action
             android:id="@+id/action_home_fragment_to_movie_detail_fragment"
             app:destination="@id/movie_detail_fragment" />
+        <action
+            android:id="@+id/action_home_fragment_to_favorite_movie_fragment"
+            app:destination="@id/favorite_movie_fragment" />
     </fragment>
 
     <fragment
@@ -20,4 +23,14 @@
         android:name="com.example.moviedbtest.ui.detail.MovieDetailFragment"
         android:label="@string/detail"
         tools:layout="@layout/movie_detail_fragment" />
+
+    <fragment
+        android:id="@+id/favorite_movie_fragment"
+        android:name="com.example.moviedbtest.ui.favorite.FavoriteMovieFragment"
+        android:label="@string/favorite_movie"
+        tools:layout="@layout/favorite_movie_fragment" >
+        <action
+            android:id="@+id/action_favorite_movie_fragment_to_movie_detail_fragment"
+            app:destination="@id/movie_detail_fragment" />
+    </fragment>
 </navigation>

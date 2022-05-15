@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/dip_16"
+        android:layout_marginVertical="@dimen/dip_8"
+        android:orientation="horizontal">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_banner"
+            android:layout_width="@dimen/dip_128"
+            android:layout_height="@dimen/dip_128"
+            android:layout_marginEnd="@dimen/dip_8"
+            app:cardCornerRadius="@dimen/dip_8"
+            app:cardElevation="0dp">
+
+            <ImageView
+                android:id="@+id/imgv_banner"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="center" />
+
+            <ProgressBar
+                android:id="@+id/pb_image"
+                android:layout_width="@dimen/dip_16"
+                android:layout_height="@dimen/dip_16"
+                android:layout_gravity="center"
+                android:indeterminateTint="@color/purple_200" />
+        </androidx.cardview.widget.CardView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingHorizontal="@dimen/dip_8"
+            android:paddingVertical="@dimen/dip_4"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_title"
+                style="@style/TextAppearance.MovieTypographyStyles.Subtitle1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="@dimen/dip_4"
+                android:ellipsize="end"
+                android:lineSpacingExtra="@dimen/sp_4"
+                android:maxLines="2"
+                tools:text="Judul Berita" />
+
+            <TextView
+                android:id="@+id/tv_genre"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/dip_4"
+                android:fontFamily="@font/avenir_book"
+                android:textColor="@color/grey_900"
+                android:textSize="@dimen/sp_14"
+                tools:text="Komedi-romantis" />
+
+            <TextView
+                android:id="@+id/tv_descr"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/dip_4"
+                android:ellipsize="end"
+                android:fontFamily="@font/avenir_book"
+                android:maxLines="5"
+                android:textColor="@color/grey_800"
+                android:textSize="@dimen/sp_12"
+                tools:text="Komedi-romantis" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</layout>

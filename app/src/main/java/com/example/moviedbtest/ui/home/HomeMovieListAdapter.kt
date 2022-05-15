@@ -17,7 +17,7 @@ class HomeMovieListAdapter(
     val itemDummyHeight: Int,
     val usingCaption: Boolean = false,
     val mData: ArrayList<MovieResponse>,
-    val listener: ItemMovieListener
+    val listener: ItemMovieListener<MovieResponse>
 ) :
     RecyclerView.Adapter<HomeMovieListAdapter.ItemHomeMovieVH>() {
 

@@ -2,6 +2,7 @@ package com.example.moviedbtest.viewmodels
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.moviedbtest.data.model.local.Movie
 import com.example.moviedbtest.data.model.remote.response.MovieResponse
 import com.example.moviedbtest.data.model.remote.response.MovieReviewResponse
 import com.example.moviedbtest.data.repository.MainRepository
@@ -20,6 +21,50 @@ class MovieDetailViewModel @Inject constructor(
     val pageReq = SingleLiveEvent<Boolean>()
     val contentResult = SingleLiveEvent<MovieResponse?>()
     val reviewResult = SingleLiveEvent<List<MovieReviewResponse>?>()
+    val favoriteState = SingleLiveEvent<Boolean>()
+
+    fun addToFavorite() {
+        val movie = Movie(
+            contentResult.value?.id ?: 0,
+            contentResult.value?.title ?: "",
+            contentResult.value?.backdropPath ?: "",
+            contentResult.value?.genreResponses?.firstOrNull()?.name ?: "",
+            contentResult.value?.overview ?: ""
+        )
+        viewModelScope.launch {
+            mainRepository.addMovieToFavorite(movie).collect {
+                when (it.status) {
+                    Status.LOADING -> {
+                    }
+
+                    Status.SUCCESS -> {
+                        favoriteState.postValue(true)
+                    }
+
+                    Status.ERROR -> {
+                    }
+                }
+            }
+        }
+    }
+
+    fun removeFromFavorite() {
+        viewModelScope.launch {
+            mainRepository.removeMovieFromFavorite(contentResult.value?.id ?: 0).collect {
+                when (it.status) {
+                    Status.LOADING -> {
+                    }
+
+                    Status.SUCCESS -> {
+                        favoriteState.postValue(false)
+                    }
+
+                    Status.ERROR -> {
+                    }
+                }
+            }
+        }
+    }
 
     fun start() {
         viewModelScope.launch {
@@ -36,6 +81,21 @@ class MovieDetailViewModel @Inject constructor(
 
                     Status.ERROR -> {
                         pageReq.postValue(false)
+                    }
+                }
+            }
+
+            mainRepository.getFavoriteMovieById(movieId).collect {
+                when (it.status) {
+                    Status.LOADING -> {
+                    }
+
+                    Status.SUCCESS -> {
+                        pageReq.postValue(false)
+                        favoriteState.postValue(it.data != null)
+                    }
+
+                    Status.ERROR -> {
                     }
                 }
             }

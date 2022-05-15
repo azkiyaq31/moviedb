@@ -2,6 +2,7 @@ package com.example.moviedbtest.moduledi
 
 import com.example.moviedbtest.data.RemoteDataSource
 import com.example.moviedbtest.data.repository.MainRepository
+import com.example.moviedbtest.db.MovieDao
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -17,10 +18,11 @@ object RepositoryModule {
     @Provides
     @ViewModelScoped
     fun provideMainRepository(
+        movieDao: MovieDao,
         remoteDataSource: RemoteDataSource,
         coroutineDispatcher: CoroutineDispatcher
     ): MainRepository {
-        return MainRepository(remoteDataSource, coroutineDispatcher)
+        return MainRepository(movieDao, remoteDataSource, coroutineDispatcher)
     }
 
 

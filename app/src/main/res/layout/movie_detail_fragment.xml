@@ -126,9 +126,12 @@
                 android:layout_weight="1" />
 
             <ImageView
+                android:id="@+id/imgv_fav"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="@dimen/dip_8"
+                android:clickable="true"
+                android:focusable="true"
                 android:src="@drawable/ic_favorite_border" />
 
             <ImageView
