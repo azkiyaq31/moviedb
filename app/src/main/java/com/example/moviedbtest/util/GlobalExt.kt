@@ -1,6 +1,7 @@
 package com.example.moviedbtest.util
 
 import android.app.Activity
+import android.content.Intent
 import android.content.res.Resources
 import android.graphics.drawable.Drawable
 import android.os.Build
@@ -8,6 +9,7 @@ import android.util.DisplayMetrics
 import android.view.View
 import android.widget.ImageView
 import android.widget.ProgressBar
+import androidx.fragment.app.FragmentActivity
 import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
@@ -37,6 +39,24 @@ fun Activity.getDeviceHeight(): Int {
     else
         windowManager.defaultDisplay.getMetrics(displayMetrics)
     return displayMetrics.heightPixels
+}
+
+fun FragmentActivity.shareToOthers(title: String, body: String) {
+    val sendIntent = Intent().apply {
+        action = Intent.ACTION_SEND
+        type = "text/plain"
+        putExtra(
+            Intent.EXTRA_TITLE,
+            title
+        )
+        putExtra(
+            Intent.EXTRA_TEXT,
+            body
+        )
+    }
+    val chooserIntent = Intent.createChooser(sendIntent, null).apply {
+    }
+    startActivity(chooserIntent)
 }
 
 fun ImageView.loadImage(obj: Any?, progressBar: ProgressBar? = null, cache: Boolean = true) {

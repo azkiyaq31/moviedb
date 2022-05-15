@@ -11,6 +11,7 @@ import com.example.moviedbtest.databinding.MovieDetailFragmentBinding
 import com.example.moviedbtest.util.Constants.ARG_MOVIE_ID
 import com.example.moviedbtest.util.getDeviceWidth
 import com.example.moviedbtest.util.loadImage
+import com.example.moviedbtest.util.shareToOthers
 import com.example.moviedbtest.viewmodels.MovieDetailViewModel
 
 class MovieDetailFragment : Fragment() {
@@ -70,6 +71,12 @@ class MovieDetailFragment : Fragment() {
             }
             reviewAdapter = MovieReviewListAdapter(arrayListOf())
             rvReviews.adapter = reviewAdapter
+            imgvShare.setOnClickListener {
+                requireActivity().shareToOthers(
+                    viewModel.contentResult.value?.title ?: "",
+                    viewModel.contentResult.value?.overview ?: ""
+                )
+            }
             imgvFav.setOnClickListener {
                 if (viewModel.favoriteState.value != true)
                     viewModel.addToFavorite()

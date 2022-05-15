@@ -31,6 +31,7 @@
                     android:layout_height="?attr/actionBarSize"
                     android:background="?android:attr/colorPrimary"
                     android:elevation="@dimen/dip_16"
+                    android:theme="@style/MyThemeOverlay_Toolbar"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"

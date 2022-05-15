@@ -50,6 +50,7 @@ class MainActivity : AppCompatActivity() {
 
         binding.apply {
             setSupportActionBar(toolbar)
+            supportActionBar?.title = ""
             toolbar.setupWithNavController(navController, appBarConfiguration)
         }
     }
