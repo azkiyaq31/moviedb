@@ -149,6 +149,13 @@ class HomeFragment : Fragment(), ItemMovieListener<MovieResponse> {
                     96.px,
                     96.px, true
                 )
+
+            swipeHome.apply {
+                setOnRefreshListener {
+                    isRefreshing = false
+                    viewModel.start()
+                }
+            }
         }
     }
 
